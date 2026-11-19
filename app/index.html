@@ -1,25 +1,142 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Ledger — GTA 6 Trophy Guide &amp; Tracker</title>
+<meta name="description" content="The complete guide and tracker for all 55 PlayStation 5 trophies of Grand Theft Auto VI: roadmap, missables, cited guides for every trophy, and a checklist that saves in your browser.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5 &middot; Unofficial fan guide</p>
+    <h1>Leonida Ledger</h1>
+    <p class="tagline">Every one of the 55 trophies — what it asks, how to earn it, where the facts come from — and a checklist that remembers your progress.</p>
+    <div class="stats" id="stats" aria-live="polite">
+      <div class="stat"><span class="num" id="stat-earned">0</span><span class="lbl">earned of 55</span></div>
+      <div class="stat"><span class="num" id="stat-pct">0%</span><span class="lbl">to platinum</span></div>
+      <div class="stat"><span class="num" id="stat-platinum">1</span><span class="lbl">platinum</span></div>
+      <div class="stat"><span class="num">2</span><span class="lbl">gold</span></div>
+      <div class="stat"><span class="num">6</span><span class="lbl">silver</span></div>
+      <div class="stat"><span class="num">46</span><span class="lbl">bronze</span></div>
+      <div class="stat"><span class="num">28</span><span class="lbl">hidden until earned</span></div>
+      <div class="stat"><span class="num">~200 h</span><span class="lbl">to platinum*</span></div>
+    </div>
+    <div class="progress" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="progress-bar"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+    <p class="fine">*Time estimate: GTABase rates the platinum about 200 hours at 4/10 difficulty. All 55 trophies are single-player and offline — there are no online trophies.</p>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
-<script type="module" src="app.js"></script>
+
+<main class="wrap">
+  <section class="toolbar" aria-label="Tracker controls">
+    <div class="row">
+      <label class="search">Search trophies
+        <input id="search" type="search" placeholder="Search name, mission, or guide…" autocomplete="off">
+      </label>
+      <label class="pick">Grade
+        <select id="grade-filter">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label class="pick">Status
+        <select id="status-filter">
+          <option value="all">All</option>
+          <option value="earned">Earned</option>
+          <option value="remaining">Still to earn</option>
+        </select>
+      </label>
+      <label class="pick">Sort
+        <select id="sort">
+          <option value="default">List order</option>
+          <option value="name">Name A–Z</option>
+          <option value="grade">Grade (best first)</option>
+        </select>
+      </label>
+    </div>
+    <div class="row kinds" id="kind-filters" role="group" aria-label="Filter by kind">
+      <button type="button" data-kind="all" class="chip active" aria-pressed="true">All 55</button>
+      <button type="button" data-kind="story" class="chip" aria-pressed="false">Story</button>
+      <button type="button" data-kind="missable" class="chip" aria-pressed="false">Missable</button>
+      <button type="button" data-kind="collectibles" class="chip" aria-pressed="false">Collectibles</button>
+      <button type="button" data-kind="activities" class="chip" aria-pressed="false">Activities</button>
+      <button type="button" data-kind="online" class="chip" aria-pressed="false">Online</button>
+    </div>
+    <div class="row tools">
+      <label class="toggle"><input type="checkbox" id="spoiler" checked> <span><strong>Hide spoilers</strong> — hide the names &amp; descriptions of story trophies until you earn them</span></label>
+      <span class="spacer"></span>
+      <button type="button" id="export-btn" class="btn">Export progress</button>
+      <label class="btn file-btn">Import progress <input type="file" id="import-file" accept=".json,application/json" hidden></label>
+      <button type="button" id="reset-btn" class="btn danger">Reset</button>
+    </div>
+    <p class="count" id="count-line" aria-live="polite">Showing 55 of 55 trophies.</p>
+  </section>
+
+  <div class="layout">
+    <div class="main-col">
+      <section class="roadmap" id="roadmap" aria-labelledby="roadmap-h">
+        <h2 id="roadmap-h">Roadmap to the platinum</h2>
+        <p class="lede">One playthrough is enough. There is no difficulty setting, no mission replay and no New Game+, but free roam carries on after the story — so almost everything can be cleaned up after the credits. The plan below follows GTABase's roadmap, with the missable warning up front.</p>
+        <div class="warn" role="note">
+          <strong>⚠ The one possibly missable trophy — read this first.</strong>
+          <p><strong>Positive Mental Attitude</strong> (meditate at all 18 spots) may be missable: in Chapter 1, the morning after <em>Down to Earth</em>, follow Lucia from the kitchen to the balcony and accept her meditation. It is gone after Chapter 1, and it is not confirmed yet whether the trophy needs it — so do not skip it. Keep a manual save at the start of every chapter and one before the final mission, because there is no mission replay. <span class="cite">Sources: <a href="https://www.gtabase.com/articles/gta-6/gta-6-achievements-trophies-list-ps5-xbox-series">GTABase</a> · <a href="https://outputlag.com/guides/gta-6-trophy-list/">Output Lag</a></span></p>
+        </div>
+        <ol class="steps">
+          <li><strong>Play the story, chapters 1–2.</strong> Do Lucia's balcony meditation in Chapter 1 (see warning above). From Chapter 2, Jason and Lucia are both playable — most of the list opens up here. Turn on every progress and collectible notification in Settings.</li>
+          <li><strong>Scan as you go.</strong> WAiNK-scan vehicles (200 needed for 100%), study animals with binoculars (100), meditate with both characters, and grab WAiNK spots whenever you pass one. It is all easier now than in clean-up.</li>
+          <li><strong>Take side content as it appears.</strong> Character quest lines (Andy, Kenton, Billy, Randy, Tyrone, Bret) and stranger strands are offered for a while — start them when they show up. Stranger missions are not part of 100%, but Strangers &amp; Freaks needs 8 strands.</li>
+          <li><strong>Finish the story, chapters 3–5.</strong> Story trophies pop as you play; chapter trophies can pop a mission or two into the next chapter. Do not push your Criminal Profile towards Irredeemable — it is permanent.</li>
+          <li><strong>After the credits, open Progress &gt; Stats &gt; 100% Completion.</strong> Work through what is left: every robbery, all 8 bank vaults, all 39 gang operations, underwater discoveries, every Shooting Range gold, all drone races and Bret's 15 Target Decks. This is the longest stretch — around 100 hours.</li>
+          <li><strong>Finish the partial counts.</strong> 100 optional missions, 200 of 277 vehicle scans, 100 of 255 animal studies, 15 of 18 meditations, 70 of 80 challenges, 300 stunts and 100 WAiNK scans.</li>
+          <li><strong>Clean up the miscellaneous trophies.</strong> Partner robberies (Hot Together, Retail Therapy), Combat Focus (Gunslinger), the VCIA jet (Catch Me If You Can), the tank (Challenging Tank), jewelry heists (Sneakthief) and the money trophies (Dime on the Dollar, Treat Yo Self).</li>
+          <li><strong>Buy the garages, register the vehicles.</strong> Little Boxes (8 garages, ~$160,000) and On the Spot (10 Scooter Bros registrations) need garage space and cash — do them together.</li>
+          <li><strong>Platinum.</strong> Once A Long Road (100% completion) pops, Vice Got a Price! follows immediately.</li>
+        </ol>
+        <h3>The 100% checklist, at a glance</h3>
+        <table class="check100">
+          <thead><tr><th>Needed in full</th><th>Needed in part</th></tr></thead>
+          <tbody><tr>
+            <td>All robberies · 8 bank vaults · 39 gang operations · underwater discoveries · all Shooting Range gold medals · all drone races · Bret's 15 Target Decks</td>
+            <td>100 optional missions · 200 / 277 vehicle scans · 100 / 255 animal studies · 15 / 18 meditations · 70 / 80 challenges · 300 stunts · 100 WAiNK scans</td>
+          </tr></tbody>
+        </table>
+        <p class="fine">Roadmap facts: <a href="https://www.gtabase.com/articles/gta-6/gta-6-achievements-trophies-list-ps5-xbox-series">GTABase — GTA 6 Trophy Guide</a> · <a href="https://gta-zone.com/news/gta-6-trophies-achievements/">GTA Zone — trophy list</a>. Cheats disable trophies and saving, so keep them off your trophy run.</p>
+      </section>
+
+      <section aria-labelledby="list-h">
+        <h2 id="list-h">All 55 trophies</h2>
+        <p class="lede">Tick a trophy when you earn it — your progress is saved in this browser. Tap any trophy to see its full guide in the panel. Names and descriptions are shown as PlayStation publishes them; guides are written in our own words and every guide names its source.</p>
+        <ul class="trophy-list" id="trophy-list"></ul>
+        <p class="empty" id="empty-state" hidden>No trophies match these filters. Try clearing the search or choosing “All 55”.</p>
+      </section>
+    </div>
+
+    <aside class="detail" id="detail" aria-live="polite" aria-label="Selected trophy guide">
+      <p class="detail-hint">Select a trophy to read its full guide here.</p>
+    </aside>
+  </div>
+
+  <section class="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources &amp; notes</h2>
+    <ul>
+      <li><a href="https://www.gtabase.com/articles/gta-6/gta-6-achievements-trophies-list-ps5-xbox-series">GTABase — GTA 6 Trophy Guide &amp; Achievements List</a> — primary source for the roadmap, the 100% checklist, counts and unlock steps for all 55 trophies.</li>
+      <li><a href="https://www.pushsquare.com/guides/gta-6-trophy-guide-and-roadmap">Push Square — GTA 6 Trophy Guide &amp; Roadmap</a> — WAiNK progress tracking and Top Fun drone race locations.</li>
+      <li><a href="https://outputlag.com/guides/gta-6-trophy-list/">Output Lag — GTA 6 Trophy List</a> — the Chapter 1 missable meditation and manual-save advice.</li>
+      <li><a href="https://gta-zone.com/news/gta-6-trophies-achievements/">GTA Zone — GTA 6 Trophy List: All 55 Trophies and Achievements</a> — grade split, Gamerscore and roadmap totals.</li>
+      <li><a href="https://www.keengamer.com/articles/guides/gta-6-trophy-guide-platinum-roadmap-all-55-trophies/">KeenGamer — GTA 6 Trophy Guide &amp; Platinum Roadmap</a> — roadmap cross-check.</li>
+    </ul>
+    <p class="fine">Trophy names and descriptions are reproduced as published on PlayStation. All other guide text is written for this page; where a step is not yet confirmed by the cited guides, the guide says so instead of guessing. This is an unofficial fan guide, not affiliated with Rockstar Games, and it contains no Rockstar logo, artwork, box art or screenshots of the game. Progress is stored only in your browser (localStorage) unless you export it. Works fully offline.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><p>Leonida Ledger — an offline trophy guide &amp; tracker for Grand Theft Auto VI on PS5. 55 trophies · 1 platinum · 2 gold · 6 silver · 46 bronze · 28 hidden.</p></div>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>
